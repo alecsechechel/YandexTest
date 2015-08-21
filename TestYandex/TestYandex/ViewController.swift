@@ -11,7 +11,7 @@ import SwiftyJSON
 import SQLite
 import Alamofire
 
-public class ViewController: UIViewController, UITableViewDataSource {
+public class ViewController: UIViewController {
 
     @IBOutlet public weak var tableView: UITableView!
     
@@ -21,7 +21,7 @@ public class ViewController: UIViewController, UITableViewDataSource {
     var arrayIsSectionExpanded: [Int]!
     var sectionContentDict = [String: [String]]()
     
-    //MARK: UIViewController lifecycle
+    //MARK: - UIViewController lifecycle
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Яндекс.Денег"
@@ -37,62 +37,7 @@ public class ViewController: UIViewController, UITableViewDataSource {
     override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
-    // MARK: - Table View
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return list.count
-    }
-    
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        if let array = arrayIsSectionExpanded {
-            if array[section] == 1 {
-                if let count = list[section].array?.count {
-                    return count
-                }
-            }
-        }
-        return 0
-    }
-    
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50
-    }
-    
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 75
-    }
-    
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
-        headerView.backgroundColor = kHeaderColor
-        headerView.tag = section
-        
-        let headerString = UILabel(frame: CGRect(x: 10, y: 10, width: tableView.frame.size.width-10, height: 30)) as UILabel
-        headerString.text = list[section].title
-        headerView.addSubview(headerString)
-        
-        let headerTapped = UITapGestureRecognizer(target: self, action:"sectionHeaderTapped:")
-        headerView.addGestureRecognizer(headerTapped)
-        
-        return headerView
-    }
-    
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
-        
-        var cell = self.tableView.dequeueReusableCellWithIdentifier(kCellIndentifier) as! UITableViewCell
-        var manyCells = arrayIsSectionExpanded[indexPath.section] == 1 ? true : false
-        
-        if manyCells {
-            let arrayContent = sectionContentDict[list[indexPath.section].title]!
-
-            cell.textLabel?.text = arrayContent[indexPath.row]
-            cell.backgroundColor = kItemsColor
-        }
-        return cell
-    }
-    
     // MARK: - Tap Action
     func sectionHeaderTapped(recognizer: UITapGestureRecognizer) {
         var indexPath = NSIndexPath(forRow: 0, inSection:(recognizer.view?.tag)!)
@@ -288,4 +233,70 @@ public class ViewController: UIViewController, UITableViewDataSource {
         getList()
     }
 }
+
+// MARK: - UITableViewDataSource
+extension ViewController: UITableViewDataSource {
+    
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return list.count
+    }
+    
+    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        if let array = arrayIsSectionExpanded {
+            if array[section] == 1 {
+                if let count = list[section].array?.count {
+                    return count
+                }
+            }
+        }
+        return 0
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 75
+    }
+    
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let headerView = UIView(frame: CGRectMake(0, 0, tableView.frame.size.width, 40))
+        headerView.backgroundColor = kHeaderColor
+        headerView.tag = section
+        
+        let headerString = UILabel(frame: CGRect(x: 10, y: 10, width: tableView.frame.size.width-10, height: 30)) as UILabel
+        headerString.text = list[section].title
+        headerView.addSubview(headerString)
+        
+        let headerTapped = UITapGestureRecognizer(target: self, action:"sectionHeaderTapped:")
+        headerView.addGestureRecognizer(headerTapped)
+        
+        return headerView
+    }
+    
+    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+        
+        var cell = self.tableView.dequeueReusableCellWithIdentifier(kCellIndentifier) as! UITableViewCell
+        var manyCells = arrayIsSectionExpanded[indexPath.section] == 1 ? true : false
+        
+        if manyCells {
+            let arrayContent = sectionContentDict[list[indexPath.section].title]!
+            
+            cell.textLabel?.text = arrayContent[indexPath.row]
+            cell.backgroundColor = kItemsColor
+        }
+        return cell
+    }
+}
+
+
+
+
+
+
+
+
 

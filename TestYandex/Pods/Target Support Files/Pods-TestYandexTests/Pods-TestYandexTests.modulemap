@@ -1,0 +1,6 @@
+framework module Pods_TestYandexTests {
+  umbrella header "Pods-TestYandexTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

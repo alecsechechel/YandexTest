@@ -1,0 +1,43 @@
+PODS:
+  - Alamofire (1.3.1)
+  - Moya (2.1.0):
+    - Moya/Core (= 2.1.0)
+  - Moya/Core (2.1.0):
+    - Alamofire (~> 1.3.0)
+  - Nimble (1.0.0)
+  - OHHTTPStubs (4.1.0)
+  - Quick (0.3.1)
+  - SQLite.swift (0.1.0.pre):
+    - SQLite.swift/Library (= 0.1.0.pre)
+  - SQLite.swift/Core (0.1.0.pre)
+  - SQLite.swift/Library (0.1.0.pre):
+    - SQLite.swift/Core
+  - SwiftyJSON (2.2.1)
+
+DEPENDENCIES:
+  - Moya
+  - Nimble (~> 1.0.0)
+  - OHHTTPStubs
+  - Quick (~> 0.3.0)
+  - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`)
+  - SwiftyJSON (~> 2.2.1)
+
+EXTERNAL SOURCES:
+  SQLite.swift:
+    :git: https://github.com/stephencelis/SQLite.swift.git
+
+CHECKOUT OPTIONS:
+  SQLite.swift:
+    :commit: 89d16192bb73bf179c08c30227fbd9e52be6bf32
+    :git: https://github.com/stephencelis/SQLite.swift.git
+
+SPEC CHECKSUMS:
+  Alamofire: e4ab637e3195b645c814b87a652373439e59f2a4
+  Moya: 6ad7d6b1e12b758e46edde8a07245d633e176087
+  Nimble: 8bee528e5fcc403653076545db562d2b5db7bb87
+  OHHTTPStubs: f3473ab21dbf0815253ac96b977d5c36f1daad09
+  Quick: 824572d3d198d51e52cf4aa722cebf7e59952a35
+  SQLite.swift: 62bdf79b05b2a88b94d4b8f9a3b7aa94bfedc660
+  SwiftyJSON: ae2d0a3d68025d136602a33c4ee215091ced3e33
+
+COCOAPODS: 0.38.2

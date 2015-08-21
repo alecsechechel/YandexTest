@@ -1,0 +1,17 @@
+platform :ios, "8.0"
+use_frameworks!
+
+pod 'Moya'
+pod 'SQLite.swift', git: 'https://github.com/stephencelis/SQLite.swift.git'
+pod 'SwiftyJSON', '~> 2.2.1'
+
+
+def testing_pods
+    pod 'Quick', '~> 0.3.0'
+    pod 'Nimble', '~> 1.0.0'
+    pod 'OHHTTPStubs'
+end
+
+target 'TestYandexTests' do
+    testing_pods
+end

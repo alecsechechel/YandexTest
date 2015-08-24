@@ -288,6 +288,7 @@ extension ViewController: UITableViewDataSource {
             cell.textLabel?.text = arrayContent[indexPath.row]
             cell.backgroundColor = kItemsColor
         }
+        
         return cell
     }
 }
